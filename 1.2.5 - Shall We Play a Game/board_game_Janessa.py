@@ -1,4 +1,5 @@
 #todo window start screen 
+background_image = "pirates_board_game_backg.gif"
 
 
 
