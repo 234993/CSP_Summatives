@@ -1,10 +1,13 @@
 #todo players turtles 
-import turtle
+import turtle as trtl
+import turtle as player_one
+import turtle as player_two 
+player_one = ("blue_ship.gif")
+player_two = ("red_ship")
 
 #todo window start screen 
-wn = turtle.Screen()
+wn = trtl.Screen()
 wn.bgpic("pirates_board_game_backg.gif")
-
 #todo players movement 
 
 
