@@ -26,18 +26,20 @@ player_one.pendown()
 player_two.pendown()
 
 # dice button- use a turtle to do this 
-button = trtl .Turtle() #create to buttuon 
+button = trtl.Turtle() #create to push button 
+rolled_number = trtl.Turtle() #had to create 
+rolled_number.goto(100,100)
 button.hideturtle()
 button.shape("button.gif")
 button.penup()
 button.goto(650,350)
 button.showturtle()
 def roll_dice(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
-    push_button = rand.randint(1,12)
-
+    button_pushed = rand.randint(1,12)
+    rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code 
     
 button.onclick(roll_dice)
-button.write(roll_dice, font=("Arial", 10, "normal"))
+
 
 
 # dice number appering on the screen(in the chest)
