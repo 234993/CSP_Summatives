@@ -32,7 +32,10 @@ button.shape("button.gif")
 button.penup()
 button.goto(650,350)
 button.showturtle()
-
+def roll_dice(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
+    push_button = rand.randint(1,12)
+    print("You rolled", push_button)
+button.onclick(roll_dice)
 
 
 
