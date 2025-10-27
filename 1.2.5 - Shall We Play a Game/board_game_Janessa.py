@@ -1,10 +1,9 @@
-#todo window start screen 
-background_image = "pirates_board_game_backg.gif"
-
-
-
 #todo players turtles 
+import turtle
 
+#todo window start screen 
+wn = turtle.Screen()
+wn.bgpic("pirates_board_game_backg.gif")
 
 #todo players movement 
 
@@ -26,3 +25,6 @@ background_image = "pirates_board_game_backg.gif"
 
 
 # option to end or restart the game 
+
+
+wn.mainloop()
