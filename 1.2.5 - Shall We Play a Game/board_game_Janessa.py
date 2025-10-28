@@ -39,16 +39,18 @@ button.showturtle()
 
 # dice number appering on the screen(in the chest)
 def roll_dice(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
-    button_pushed = rand.randint(1,12)
-    rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code 
-    button_pushed.clear()#stop the numbers from overlapping     
+    button_pushed = rand.randint(1,7)
+    rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code
+    player_one.forward(button_pushed * 100)
+    button_pushed.clear()#stop the numbers from overlapping - why. is this not working    
 button.onclick(roll_dice)
 
 
 #todo have the players move and take turns 
-def player_one_roll():
-    #if rolled_number 
-    
+
+#if player_one(roll_dice):
+
+
 
 # How to reconize when the game is won 
 
