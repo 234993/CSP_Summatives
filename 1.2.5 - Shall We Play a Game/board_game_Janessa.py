@@ -28,22 +28,27 @@ player_two.pendown()
 # dice button- use a turtle to do this 
 button = trtl.Turtle() #create to push button 
 rolled_number = trtl.Turtle() #had to create 
+rolled_number.penup()
+rolled_number.hideturtle()
 rolled_number.goto(100,100)
 button.hideturtle()
 button.shape("button.gif")
 button.penup()
 button.goto(650,350)
 button.showturtle()
+
+# dice number appering on the screen(in the chest)
 def roll_dice(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
     button_pushed = rand.randint(1,12)
     rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code 
-    
+    button_pushed.clear()#stop the numbers from overlapping     
 button.onclick(roll_dice)
 
 
-
-# dice number appering on the screen(in the chest)
-
+#todo have the players move and take turns 
+def player_one_roll():
+    #if rolled_number 
+    
 
 # How to reconize when the game is won 
 
