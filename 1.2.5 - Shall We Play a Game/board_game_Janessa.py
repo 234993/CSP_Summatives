@@ -36,21 +36,23 @@ button.shape("button.gif")
 button.penup()
 button.goto(650,350)
 button.showturtle()
-spaces = []
+board_conners = [600,345]
+
 # dice number appering on the screen(in the chest)
 def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
-    button_pushed = rand.randint(1,10) #had to make out of 7 becuase thats the shortest part of the board
+    button_pushed = rand.randint(1,5) #had to make out of 7 becuase thats the shortest part of the board
     rolled_number.goto(-50,30) 
     rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code
     player_one.penup()
     player_one.forward(button_pushed * 110) 
-    spaces.append(button_pushed)
-    print(spaces)
     rolled_number.clear()#stop the numbers from overlapping 
+    if player_one.xcor() == board_conners:
+        player_one.setheading(270)
+        player_one.forward(button_pushed * 110) 
 
 
 button.onclick(roll_dice_1)
-roll_dice_1
+
 
 #todo have the players move and take turns 
 
