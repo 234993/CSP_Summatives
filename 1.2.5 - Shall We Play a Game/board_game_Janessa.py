@@ -1,8 +1,11 @@
 #todo players turtles 
 import turtle as trtl
-import random as rand #lets me roll dice 
-global player_one 
+import random as rand #lets me roll dice
 global time 
+import time  
+global player_one 
+
+
 
 
 #Turtles created-------------------------------------------------------------------
@@ -68,22 +71,23 @@ button_2.goto(650,-350)
 button_2.showturtle()
 
 #Todo try target points----------------------------------------------------------------------------------------------------------------------
-target_x_top_r = 335
+position_1 = 0
 
 
 
 # dice number appering on the screen(in the chest) + #todo have the players move and take turns 
 def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
+    global position_1 
     button_pushed = rand.randint(1,5) #had to make out of 7 becuase thats the shortest part of the board
-    if player_one != target_x_top_r:
-        rolled_number.goto(-50,30) 
-        rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code
-        player_one.penup()
-        player_one.forward(button_pushed * 110) 
-        rolled_number.clear()#stop the numbers from overlapping 
-    else:
-       time.sleep(3)
-       player_one.setheading(270)
+    rolled_number.goto(-50,30) 
+    rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code
+    position_1 += button_pushed
+    player_one.penup()
+    player_one.forward(button_pushed * 110) 
+    rolled_number.clear()#stop the numbers from overlapping 
+    if position_1 >= 10:
+        time.sleep(3)
+        player_one.setheading(270)
 button.onclick(roll_dice_1)
 
 def roll_dice_2(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
