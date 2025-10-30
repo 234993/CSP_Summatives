@@ -71,23 +71,41 @@ button_2.goto(650,-350)
 button_2.showturtle()
 
 #Todo try target points----------------------------------------------------------------------------------------------------------------------
-position_1 = 0
-
+position_1_p1 = 0
+posistion_2_p1 = 0
+p1_consequence = [4,8,13,19,23,27,29]
+conner_2 = 10
+conner_3 = 530,-335
+conner_4 = 0
 
 
 # dice number appering on the screen(in the chest) + #todo have the players move and take turns 
 def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
-    global position_1 
+    global position_1_p1
+    global posistion_2_p1 
     button_pushed = rand.randint(1,5) #had to make out of 7 becuase thats the shortest part of the board
     rolled_number.goto(-50,30) 
     rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code
-    position_1 += button_pushed
+    #position_1_p1 += button_pushed
+    #posistion_2_p1 += button_pushed
     player_one.penup()
-    player_one.forward(button_pushed * 110) 
     rolled_number.clear()#stop the numbers from overlapping 
-    if position_1 >= 10:
-        time.sleep(3)
-        player_one.setheading(270)
+    for i in range(button_pushed):
+        if position_1_p1 == 32:
+            position_1_p1 = 0 #resets back to start value
+        if position_1_p1 == 10: 
+            player_one.setheading(270)
+        if position_1_p1 == 16:
+            player_one.setheading(180)
+        player_one.forward(110) 
+        position_1_p1 +=1
+    if position_1_p1 in p1_consequence:
+        player_one.backward(110)
+        position_1_p1 -= 1
+  
+            
+#liat of spaces that set you back or forward/number spaces different for the dif avatars 
+   
 button.onclick(roll_dice_1)
 
 def roll_dice_2(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
