@@ -72,49 +72,74 @@ button_2.showturtle()
 
 #Todo try target points----------------------------------------------------------------------------------------------------------------------
 position_1_p1 = 0
-posistion_2_p1 = 0
-p1_consequence = [4,8,13,19,23,27,29]
-conner_2 = 10
-conner_3 = 530,-335
-conner_4 = 0
-
+position_1_p2 = 0
+p1_consequence = [4,8,19,23,27]
+p2_consequence = [3,7,11,20,24]
+p1_boost = [13,29]
+p2_boost = [13,29]
 
 # dice number appering on the screen(in the chest) + #todo have the players move and take turns 
 def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
     global position_1_p1
-    global posistion_2_p1 
     button_pushed = rand.randint(1,5) #had to make out of 7 becuase thats the shortest part of the board
     rolled_number.goto(-50,30) 
     rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code
-    #position_1_p1 += button_pushed
-    #posistion_2_p1 += button_pushed
     player_one.penup()
-    rolled_number.clear()#stop the numbers from overlapping 
     for i in range(button_pushed):
         if position_1_p1 == 32:
             position_1_p1 = 0 #resets back to start value
+            player_one.goto(-70,70)
+            player_one.stamp()
+            player_one.goto(-600,345)
+            player_one.setheading(360)
         if position_1_p1 == 10: 
             player_one.setheading(270)
         if position_1_p1 == 16:
             player_one.setheading(180)
+        if position_1_p1 == 26:
+            player_one.setheading(90)
         player_one.forward(110) 
         position_1_p1 +=1
+        rolled_number.clear()#stop the numbers from overlapping 
     if position_1_p1 in p1_consequence:
         player_one.backward(110)
         position_1_p1 -= 1
+    if position_1_p1 in p1_boost:
+        player_one.forward(110)
+        position_1_p1 +=1 
   
             
 #liat of spaces that set you back or forward/number spaces different for the dif avatars 
    
 button.onclick(roll_dice_1)
 
-def roll_dice_2(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
-    button_2_pushed = rand.randint(1,5) #had to make out of 7 becuase thats the shortest part of the board
+def roll_dice_2(x,y):
+    global position_1_p2  
+    button_2 = rand.randint(1,5) #had to make out of 7 becuase thats the shortest part of the board
     rolled_number.goto(-50,30) 
-    rolled_number.write(button_2_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code
+    rolled_number.write(button_2, font=("Arial", 30, "normal")) #found in the leaderboard code
     player_two.penup()
-    player_two.forward(button_2_pushed * 115) 
-    rolled_number.clear()#stop the numbers from overlapping 
+    for x in range(button_2):
+        if position_1_p2  == 32:
+            position_1_p2 = 0 #resets back to start value
+            player_two.setheading(180)
+        if position_1_p2 == 10: 
+            player_two.setheading(90)
+        if position_1_p2 == 16:
+            player_two.setheading(0)
+        if position_1_p2 == 26:
+            player_two.setheading(270)
+        player_two.forward(114) 
+        position_1_p2 +=1
+        rolled_number.clear()#stop the numbers from overlapping 
+    if position_1_p2 in p2_consequence: 
+      player_two.backward(114)
+      position_1_p2 -= 1
+    if position_1_p2 in p2_boost:
+        player_two.forward(110)
+        position_1_p2 +=1 
+  
+
 button_2.onclick(roll_dice_2)
 
 
