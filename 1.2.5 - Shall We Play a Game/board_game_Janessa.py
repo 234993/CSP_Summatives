@@ -15,6 +15,7 @@ wn = trtl.Screen()
 button = trtl.Turtle() #create to push button 
 button_2 = trtl.Turtle()
 rolled_number = trtl.Turtle() #had to create 
+player_1_score = trtl.Turtle()
 
 #add images over the turtles-------------------------------------------------------------------------------------
 
@@ -70,17 +71,29 @@ button_2.penup()
 button_2.goto(650,-350)
 button_2.showturtle()
 
+#player ones score 
+player_1_score.hideturtle()
+player_1_score.penup()
+player_1_score.goto(-670,360) 
+player_1_score.showturtle()
+
 #Todo try target points----------------------------------------------------------------------------------------------------------------------
 position_1_p1 = 0
 position_1_p2 = 0
-p1_consequence = [4,8,19,23,27]
-p2_consequence = [3,7,11,20,24]
+p1_consequence_1 = [8,19,27]
+p1_consequence_3 = [4,23]
+p2_consequence_1 = [3,7,11,20,24]
 p1_boost = [13,29]
 p2_boost = [13,29]
 
+#todo recoding the scroce 
+fist_step_stamp1 = (-600,345)
+player_1_score_display = 0
+player_2_score = 0
 # dice number appering on the screen(in the chest) + #todo have the players move and take turns 
 def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
     global position_1_p1
+    global player_1_score_display
     button_pushed = rand.randint(1,5) #had to make out of 7 becuase thats the shortest part of the board
     rolled_number.goto(-50,30) 
     rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code
@@ -88,10 +101,12 @@ def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in
     for i in range(button_pushed):
         if position_1_p1 == 32:
             position_1_p1 = 0 #resets back to start value
-            player_one.goto(-70,70)
+            player_one.goto(-250,80)
             player_one.stamp()
             player_one.goto(-600,345)
             player_one.setheading(360)
+            player_1_score_display += 1
+            player_1_score.write("Player 1 score =", player_1_score_display, font=("Arial", 30, "normal"))
         if position_1_p1 == 10: 
             player_one.setheading(270)
         if position_1_p1 == 16:
@@ -101,7 +116,10 @@ def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in
         player_one.forward(110) 
         position_1_p1 +=1
         rolled_number.clear()#stop the numbers from overlapping 
-    if position_1_p1 in p1_consequence:
+    if position_1_p1 in p1_consequence_3:
+        player_one.backward(110 * 3)
+        position_1_p1 -= 3
+    if position_1_p1 in p1_consequence_1:
         player_one.backward(110)
         position_1_p1 -= 1
     if position_1_p1 in p1_boost:
@@ -132,7 +150,7 @@ def roll_dice_2(x,y):
         player_two.forward(114) 
         position_1_p2 +=1
         rolled_number.clear()#stop the numbers from overlapping 
-    if position_1_p2 in p2_consequence: 
+    if position_1_p2 in p2_consequence_1: 
       player_two.backward(114)
       position_1_p2 -= 1
     if position_1_p2 in p2_boost:
