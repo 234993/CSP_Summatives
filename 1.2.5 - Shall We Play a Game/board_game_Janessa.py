@@ -81,7 +81,7 @@ player_1_score.goto(-670,360)
 # player two score
 player_2_score.hideturtle()
 player_2_score.penup()
-player_2_score.goto(-670,360) #change placement 
+player_2_score.goto(530,-405) 
 
 # player one dislplay if win 
 player_one_win.hideturtle()
@@ -96,13 +96,16 @@ player_two_win.goto(0,0)
 #Todo try target points----------------------------------------------------------------------------------------------------------------------
 position_1_p1 = 0
 position_1_p2 = 0
-# effects of landing on certain spaces 
+# effects of landing on certain spaces for player one 
 p1_consequence_1 = [8,19,27]
 p1_consequence_3 = [4,23]
-p2_consequence_1 = [3,7,11,20,24]
 p1_boost = [13,29]
+
+# effects of landing on certain spaces for player two 
+p2_consequence_1 = [3,11,24]
+p2_consequence_3 =[7,20]
 p2_boost = [13,29]
-# player ones score
+# player ones and twos scores
 player_show_score = 0 
 player2_show_score =0
 
@@ -182,7 +185,10 @@ def roll_dice_2(x,y):
     if position_1_p2 in p2_consequence_1: 
       player_two.backward(114)
       position_1_p2 -= 1
-    if position_1_p2 in p2_boost:
+    if position_1_p2 in p2_consequence_3:
+        player_two.backward(114 * 3)
+        position_1_p2 -= 3
+    if position_1_p2 in p2_boost:# only need one of these 
         player_two.forward(110)
         position_1_p2 +=1
     if player2_show_score == 3:
