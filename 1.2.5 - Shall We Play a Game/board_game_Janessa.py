@@ -14,7 +14,7 @@ player_two = trtl.Turtle()
 wn = trtl.Screen()
 button = trtl.Turtle() #create to push button 
 button_2 = trtl.Turtle()
-rolled_number = trtl.Turtle() #had to create 
+rolled_number = trtl.Turtle() 
 player_1_score = trtl.Turtle()
 player_2_score = trtl.Turtle()
 player_one_win = trtl.Turtle()
@@ -105,17 +105,22 @@ p1_boost = [13,29]
 p2_consequence_1 = [3,11,24]
 p2_consequence_3 =[7,20]
 p2_boost = [13,29]
+
 # player ones and twos scores
 player_show_score = 0 
 player2_show_score =0
 
+# Player ones stamp target points
 
 
-# dice number appering on the screen(in the chest) + #todo have the players move and take turns 
+
+
+# dice number appering on the screen(in the chest) + #todo have the players move and take turns-------------------------------------------------
 def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
     global position_1_p1
     global player_1_score
     global player_show_score
+    global stamp_player1
     button_pushed = rand.randint(1,5) #had to make out of 7 becuase thats the shortest part of the board
     rolled_number.goto(-50,30) 
     rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code
@@ -123,13 +128,23 @@ def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in
     for i in range(button_pushed):
         if position_1_p1 == 32:
             position_1_p1 = 0 #resets back to start value
-            player_one.goto(-250,80)
-            player_one.stamp()
-            player_one.goto(-600,345)
-            player_one.setheading(360)
             player_show_score +=1
             player_1_score.write(player_show_score, font=("Arial", 30, "normal"))
             time.sleep(0.5)
+            if player_show_score == 3:
+                player_one_win.write("player one wins!!!!!", font=("Arial", 40, "normal"))
+                player_one.goto(-450,200)
+                player_one.stamp()
+                player_one.hideturtle()
+                player_two.hideturtle()
+            if player_show_score == 2:
+                player_one.goto(-350,150)
+                player_one.stamp()
+            if player_show_score == 1:
+                player_one.goto(-250,80)
+                player_one.stamp()
+            player_one.goto(-600,345)
+            player_one.setheading(360)
             player_1_score.clear()
         if position_1_p1 == 10: 
             player_one.setheading(270)
@@ -149,13 +164,19 @@ def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in
     if position_1_p1 in p1_boost:
         player_one.forward(110)
         position_1_p1 +=1 
-    if player_show_score == 3:
-        player_one_win.write("player one wins!!!!!", font=("Arial", 40, "normal"))
+    
+# How to reconize when the game is won 
+    
   
-            
-#liat of spaces that set you back or forward/number spaces different for the dif avatars 
+        
    
 button.onclick(roll_dice_1)
+
+
+    
+
+
+# player twos section------------------------------------------------------------------------------------------------------------
 
 def roll_dice_2(x,y):
     global position_1_p2  
@@ -191,17 +212,14 @@ def roll_dice_2(x,y):
     if position_1_p2 in p2_boost:# only need one of these 
         player_two.forward(110)
         position_1_p2 +=1
+# How to reconize when the game is won 
     if player2_show_score == 3:
         player_two_win.write("player two wins!!!!!", font=("Arial", 40, "normal"))
+        # create a question for if they want to quick the program or not 
   
 
 button_2.onclick(roll_dice_2)
 
-
-
-
-
-# How to reconize when the game is won 
 
 
 
