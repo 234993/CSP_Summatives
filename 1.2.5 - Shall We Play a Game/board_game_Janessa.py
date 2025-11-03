@@ -16,7 +16,9 @@ button = trtl.Turtle() #create to push button
 button_2 = trtl.Turtle()
 rolled_number = trtl.Turtle() #had to create 
 player_1_score = trtl.Turtle()
-
+player_2_score = trtl.Turtle()
+player_one_win = trtl.Turtle()
+player_two_win = trtl.Turtle()
 #add images over the turtles-------------------------------------------------------------------------------------
 
 player_one_avatar = ("blue_ship.gif") 
@@ -76,19 +78,35 @@ player_1_score.hideturtle()
 player_1_score.penup()
 player_1_score.goto(-670,360) 
 
+# player two score
+player_2_score.hideturtle()
+player_2_score.penup()
+player_2_score.goto(-670,360) #change placement 
+
+# player one dislplay if win 
+player_one_win.hideturtle()
+player_one_win.penup()
+player_one_win.goto(0,0) 
+
+# player two display if win 
+player_two_win.hideturtle()
+player_two_win.penup()
+player_two_win.goto(0,0)
 
 #Todo try target points----------------------------------------------------------------------------------------------------------------------
 position_1_p1 = 0
 position_1_p2 = 0
+# effects of landing on certain spaces 
 p1_consequence_1 = [8,19,27]
 p1_consequence_3 = [4,23]
 p2_consequence_1 = [3,7,11,20,24]
 p1_boost = [13,29]
 p2_boost = [13,29]
+# player ones score
 player_show_score = 0 
-player_1_list_score = [0]
-#todo recoding the scroce 
-fist_step_stamp1 = (-600,345)
+player2_show_score =0
+
+
 
 # dice number appering on the screen(in the chest) + #todo have the players move and take turns 
 def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in the def 
@@ -108,7 +126,7 @@ def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in
             player_one.setheading(360)
             player_show_score +=1
             player_1_score.write(player_show_score, font=("Arial", 30, "normal"))
-            time.sleep(3)
+            time.sleep(0.5)
             player_1_score.clear()
         if position_1_p1 == 10: 
             player_one.setheading(270)
@@ -129,7 +147,7 @@ def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in
         player_one.forward(110)
         position_1_p1 +=1 
     if player_show_score == 3:
-        print("player one wins!!!!")
+        player_one_win.write("player one wins!!!!!", font=("Arial", 40, "normal"))
   
             
 #liat of spaces that set you back or forward/number spaces different for the dif avatars 
@@ -138,6 +156,8 @@ button.onclick(roll_dice_1)
 
 def roll_dice_2(x,y):
     global position_1_p2  
+    global player_2_score
+    global player2_show_score
     button_2 = rand.randint(1,5) #had to make out of 7 becuase thats the shortest part of the board
     rolled_number.goto(-50,30) 
     rolled_number.write(button_2, font=("Arial", 30, "normal")) #found in the leaderboard code
@@ -146,6 +166,10 @@ def roll_dice_2(x,y):
         if position_1_p2  == 32:
             position_1_p2 = 0 #resets back to start value
             player_two.setheading(180)
+            player2_show_score +=1
+            player_2_score.write(player2_show_score, font=("Arial", 30, "normal"))
+            time.sleep(0.5)
+            player_2_score.clear()
         if position_1_p2 == 10: 
             player_two.setheading(90)
         if position_1_p2 == 16:
@@ -160,7 +184,9 @@ def roll_dice_2(x,y):
       position_1_p2 -= 1
     if position_1_p2 in p2_boost:
         player_two.forward(110)
-        position_1_p2 +=1 
+        position_1_p2 +=1
+    if player2_show_score == 3:
+        player_two_win.write("player two wins!!!!!", font=("Arial", 40, "normal"))
   
 
 button_2.onclick(roll_dice_2)
