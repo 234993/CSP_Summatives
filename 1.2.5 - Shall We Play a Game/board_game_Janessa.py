@@ -19,6 +19,8 @@ player_1_score = trtl.Turtle()
 player_2_score = trtl.Turtle()
 player_one_win = trtl.Turtle()
 player_two_win = trtl.Turtle()
+warning_message = trtl.Turtle()
+restrat_game = trtl.textinput("Restart Game:", "Would you like to restart the game?") # use this to ask about restarting the game 
 #add images over the turtles-------------------------------------------------------------------------------------
 
 player_one_avatar = ("blue_ship.gif") 
@@ -93,6 +95,11 @@ player_two_win.hideturtle()
 player_two_win.penup()
 player_two_win.goto(0,0)
 
+# Warning message in the begining 
+warning_message.hideturtle()
+warning_message.penup()
+warning_message.goto(-500,0)
+
 #Todo try target points----------------------------------------------------------------------------------------------------------------------
 position_1_p1 = 0
 position_1_p2 = 0
@@ -110,8 +117,10 @@ p2_boost = [13,29]
 player_show_score = 0 
 player2_show_score =0
 
-# Player ones stamp target points
-
+#warning message before start-----Reduce the chance of the code bugging out---------------------------------------------------------------------------- 
+warning_message.write("Warning Message: Let the player complete the movment before pushing button again!", font=("Arial", 30, "normal"))
+time.sleep(5)
+warning_message.clear()
 
 
 
@@ -120,7 +129,6 @@ def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in
     global position_1_p1
     global player_1_score
     global player_show_score
-    global stamp_player1
     button_pushed = rand.randint(1,5) #had to make out of 7 becuase thats the shortest part of the board
     rolled_number.goto(-50,30) 
     rolled_number.write(button_pushed, font=("Arial", 30, "normal")) #found in the leaderboard code
@@ -131,12 +139,18 @@ def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in
             player_show_score +=1
             player_1_score.write(player_show_score, font=("Arial", 30, "normal"))
             time.sleep(0.5)
-            if player_show_score == 3:
+            if player_show_score == 3:#how to reconize when someone won 
                 player_one_win.write("player one wins!!!!!", font=("Arial", 40, "normal"))
                 player_one.goto(-450,200)
                 player_one.stamp()
                 player_one.hideturtle()
                 player_two.hideturtle()
+                restrat_game = trtl.textinput("Restart Game:", "Would you like to restart the game?") # use this to ask about restarting the game 
+                if restrat_game == "yes":
+                    roll_dice_1
+                    roll_dice_2
+                else:
+                    wn.bye()
             if player_show_score == 2:
                 player_one.goto(-350,150)
                 player_one.stamp()
@@ -164,24 +178,15 @@ def roll_dice_1(x,y): #used x and y becuase i needed some sort of 2 arguments in
     if position_1_p1 in p1_boost:
         player_one.forward(110)
         position_1_p1 +=1 
-    
-# How to reconize when the game is won 
-    
   
-        
-   
 button.onclick(roll_dice_1)
-
-
-    
-
-
 # player twos section------------------------------------------------------------------------------------------------------------
 
 def roll_dice_2(x,y):
     global position_1_p2  
     global player_2_score
     global player2_show_score
+    global restrat_game
     button_2 = rand.randint(1,5) #had to make out of 7 becuase thats the shortest part of the board
     rolled_number.goto(-50,30) 
     rolled_number.write(button_2, font=("Arial", 30, "normal")) #found in the leaderboard code
@@ -193,12 +198,18 @@ def roll_dice_2(x,y):
             player2_show_score +=1
             player_2_score.write(player2_show_score, font=("Arial", 30, "normal"))
             time.sleep(0.5)
-            if player2_show_score == 3:
+            if player2_show_score == 3: #how to reconize when someone won 
                 player_two_win.write("player two wins!!!!!", font=("Arial", 40, "normal"))
                 player_two.goto(100,-50)
                 player_two.stamp()
                 player_two.hideturtle()
                 player_one.hideturtle()
+                restrat_game = trtl.textinput("Restart Game:", "Would you like to restart the game?") # use this to ask about restarting the game 
+                if restrat_game == "yes":
+                    roll_dice_1
+                    roll_dice_2
+                else:
+                    wn.bye()
             if player2_show_score == 2:
                 player_two.goto(250,-130)
                 player_two.stamp()
