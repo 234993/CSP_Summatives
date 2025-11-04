@@ -168,7 +168,8 @@ def roll_dice_1(x,y): #same as roll_dice_2
             player_1_score.write(player_show_score, font=("Arial", 30, "normal"))
             time.sleep(0.5)
             if player_show_score == 3:#how to reconize when someone won 
-                player_one_win.write("player one wins!!!!!", font=("Arial", 40, "normal"))
+                player_one_name = "player one"
+                player_one_win.write(player_one_name + " wins!!!!!", font=("Arial", 40, "normal"))
                 player_one.goto(-450,200)
                 player_one.stamp()
                 player_two.hideturtle()
@@ -232,7 +233,8 @@ def roll_dice_2(x,y):# can i use x and y because it kinda dose noting but act as
             player_2_score.write(player2_show_score, font=("Arial", 30, "normal"))
             time.sleep(0.5)
             if player2_show_score == 3: #how to reconize when someone won 
-                player_two_win.write("player two wins!!!!!", font=("Arial", 40, "normal"))
+                player_two_name = "Player two "
+                player_two_win.write(player_two_name + " wins!!!!!", font=("Arial", 40, "normal"))
                 player_two.goto(150,-50)
                 player_two.stamp()
                 player_one.hideturtle()
