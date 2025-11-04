@@ -14,8 +14,7 @@ button_2 = trtl.Turtle()
 rolled_number = trtl.Turtle() 
 player_1_score = trtl.Turtle()
 player_2_score = trtl.Turtle()
-player_one_win = trtl.Turtle()
-player_two_win = trtl.Turtle()
+player_win = trtl.Turtle()
 warning_message = trtl.Turtle()
 
 #make the screen bigger 
@@ -24,7 +23,7 @@ wn.setup(width=1500, height=1000)
 #make the game setup together with a def 
 def setup():
     global time, player_one, player_two, button, button_2, rolled_number
-    global player_1_score, player_2_score, player_one_win, player_two_win
+    global player_1_score, player_2_score, player_win
     global warning_message, position_1_p1, position_1_p2, player_show_score, player2_show_score
 
 
@@ -94,14 +93,9 @@ def setup():
     player_2_score.goto(530,-405) 
 
     # player one dislplay if win 
-    player_one_win.hideturtle()
-    player_one_win.penup()
-    player_one_win.goto(0,0) 
-
-    # player two display if win 
-    player_two_win.hideturtle()
-    player_two_win.penup()
-    player_two_win.goto(0,0)
+    player_win.hideturtle()
+    player_win.penup()
+    player_win.goto(0,0) 
 
     # Warning message in the begining 
     warning_message.hideturtle()
@@ -127,8 +121,7 @@ def clear():
     rolled_number.clear()
     player_1_score.clear()
     player_2_score.clear()
-    player_one_win.clear()
-    player_two_win.clear()
+    player_win.clear()
     warning_message.clear()
     player_one.showturtle()
     player_two.showturtle()
@@ -168,12 +161,12 @@ def roll_dice_1(x,y): #same as roll_dice_2
             player_1_score.write(player_show_score, font=("Arial", 30, "normal"))
             time.sleep(0.5)
             if player_show_score == 3:#how to reconize when someone won 
-                player_one_name = "player one"
-                player_one_win.write(player_one_name + " wins!!!!!", font=("Arial", 40, "normal"))
+                player_name = "player one"
+                player_win.write(player_name + " wins!!!!!", font=("Arial", 40, "normal"))
                 player_one.goto(-450,200)
                 player_one.stamp()
                 player_two.hideturtle()
-                look_winner(player_one)
+                look_winner(player_name, player_win)
             if player_show_score == 2:
                 player_one.goto(-350,150)
                 player_one.stamp()
@@ -205,8 +198,8 @@ def roll_dice_1(x,y): #same as roll_dice_2
   
 button.onclick(roll_dice_1)
 
-def look_winner(player):
-    player.hideturtle()
+def look_winner(player_name, player_win):
+    player_win.write(player_name + " wins!!!!!", font=("Arial", 40, "normal"))
     restrat_game = trtl.textinput("Restart Game:", "Would you like to restart the game?") # use this to ask about restarting the game 
     if restrat_game == "yes":
         clear()
@@ -233,12 +226,12 @@ def roll_dice_2(x,y):# can i use x and y because it kinda dose noting but act as
             player_2_score.write(player2_show_score, font=("Arial", 30, "normal"))
             time.sleep(0.5)
             if player2_show_score == 3: #how to reconize when someone won 
-                player_two_name = "Player two "
-                player_two_win.write(player_two_name + " wins!!!!!", font=("Arial", 40, "normal"))
+                player_name = "player two "
+                player_win.write(player_name + " wins!!!!!", font=("Arial", 40, "normal"))
                 player_two.goto(150,-50)
                 player_two.stamp()
                 player_one.hideturtle()
-                look_winner(player_two)
+                look_winner(player_name, player_win)
             if player2_show_score == 2:
                 player_two.goto(250,-130)
                 player_two.stamp()
