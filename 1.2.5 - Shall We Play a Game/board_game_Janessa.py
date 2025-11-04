@@ -20,7 +20,6 @@ player_2_score = trtl.Turtle()
 player_one_win = trtl.Turtle()
 player_two_win = trtl.Turtle()
 warning_message = trtl.Turtle()
-restrat_game = trtl.textinput("Restart Game:", "Would you like to restart the game?") # use this to ask about restarting the game 
 #add images over the turtles-------------------------------------------------------------------------------------
 
 player_one_avatar = ("blue_ship.gif") 
