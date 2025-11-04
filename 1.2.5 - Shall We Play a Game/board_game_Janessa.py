@@ -193,6 +193,20 @@ def roll_dice_2(x,y):
             player2_show_score +=1
             player_2_score.write(player2_show_score, font=("Arial", 30, "normal"))
             time.sleep(0.5)
+            if player2_show_score == 3:
+                player_two_win.write("player two wins!!!!!", font=("Arial", 40, "normal"))
+                player_two.goto(100,-50)
+                player_two.stamp()
+                player_two.hideturtle()
+                player_one.hideturtle()
+            if player2_show_score == 2:
+                player_two.goto(250,-130)
+                player_two.stamp()
+            if player2_show_score == 1:
+                player_two.goto(375,-180)
+                player_two.stamp()
+            player_two.goto(530,-335)
+            player_two.setheading(180)
             player_2_score.clear()
         if position_1_p2 == 10: 
             player_two.setheading(90)
@@ -212,10 +226,6 @@ def roll_dice_2(x,y):
     if position_1_p2 in p2_boost:# only need one of these 
         player_two.forward(110)
         position_1_p2 +=1
-# How to reconize when the game is won 
-    if player2_show_score == 3:
-        player_two_win.write("player two wins!!!!!", font=("Arial", 40, "normal"))
-        # create a question for if they want to quick the program or not 
   
 
 button_2.onclick(roll_dice_2)
