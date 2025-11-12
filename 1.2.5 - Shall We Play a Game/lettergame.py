@@ -8,22 +8,24 @@ plus = trtl.Turtle()
 times = trtl.Turtle()
 minus = trtl.Turtle()
 divide = trtl.Turtle()
+character = trtl.Turtle()
+character.penup()
 plus.penup()
-
 #Ask player for name 
 player = trtl.textinput("Name:", "Hello what is your name?")
 player = trtl.textinput("Message",  player +", Are you ready to escape to the zoo?")
 player = player.lower()
 
-if player == "n":
-    wn.bye()
-else:
-    wn.bgpic("background.gif")
+
 #display message with captured name 
 
 
 
 # change background 
+wn.addshape("character.gif")
+character.penup()
+character.shape("character.gif")
+
 wn.addshape("plus.gif")
 plus.penup()
 plus.shape("plus.gif")
@@ -48,8 +50,27 @@ def place():
     square.shape("square")
     square.color(rand.choice(square_list_color))
     square.penup()
+    square.goto(0, -425)
+    square.color(rand.choice(square_list_color))
     square.stamp()
-
+    square.goto(100, -225)
+    square.color(rand.choice(square_list_color))
+    square.stamp()
+    square.goto(-100, -225)
+    square.color(rand.choice(square_list_color))
+    square.stamp()
+    square.goto(0, -25)
+    square.color(rand.choice(square_list_color))
+    square.stamp()
+    square.goto(-100, 175)
+    square.color(rand.choice(square_list_color))
+    square.stamp()
+    square.goto(100, 175)
+    square.color(rand.choice(square_list_color))
+    square.stamp()
+    square.goto(0, 375)
+    square.color(rand.choice(square_list_color))
+    square.stamp()
 
 divide.hideturtle()
 plus.hideturtle()
@@ -71,37 +92,34 @@ def symbol_set_up():
   plus.goto(0, 375)
   plus.stamp()
 
-square.goto(0, -425)
-place()
+character_p = 0
+number_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+number_list2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+if player == "n":
+    wn.bye()
+else:
+    wn.bgpic("background.gif")
+    place()
+    symbol_set_up()
+    divide.showturtle()
+    plus.showturtle()
+    minus.showturtle()
+    times.showturtle()
+    character.goto(0, -425)
+    character.stamp()
+    for c in range(5):
+        if character_p == 0:
+            player = trtl.textinput("Question 1", "What is " + str(rand.choice(number_list1)) + " + " + str(rand.choice(number_list2)))
+            if sum(number_list1 + number_list2) == True:
+                break
+            else:
+                print("try again!")
 
-square.goto(100, -225)
-place()
 
-
-square.goto(-100, -225)
-place()
-
-
-square.goto(0, -25)
-place()
-
-square.goto(-100, 175)
-place()
-
-square.goto(100, 175)
-place()
-
-square.goto(0, 375)
-place()
-
-symbol_set_up()
-divide.showturtle()
-plus.showturtle()
-minus.showturtle()
-times.showturtle()
 
 #number list 
-number_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
 
 
 #Leaderboard 
