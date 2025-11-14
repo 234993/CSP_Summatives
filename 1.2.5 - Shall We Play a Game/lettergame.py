@@ -1,6 +1,7 @@
 import turtle as trtl 
 import random as rand
 import leaderboard_letter
+global player_answer, number_one, number_two 
 wn = trtl.Turtle()
 wn.hideturtle()
 wn = trtl.Screen()
@@ -25,9 +26,6 @@ player = trtl.textinput("Message",  player_name +", Are you ready to escape to t
 player = player.lower()
 #------------------------------------------------------------------------------------------------------------------------------
 #Leaderboard 
-leaderboard_file = "leader_file.txt"
-leaderboard_names = []
-leaderboard_scores = []
 score_writer.hideturtle() 
 score_writer.penup()
 score_writer.goto(475,475)
@@ -125,65 +123,82 @@ else:
     times.showturtle()
     character.goto(0, -425)
     character.stamp()
-#start movmment -----------------------------------------------------------------------------------------------------------------------------------------------------------
-    for c in range(1):# their are five steps on the hop scotch 
-        number_one = rand.choice(number_list1)# pulling random numbers from this list 
-        number_two = rand.choice(number_list2)
-# start of question one-------------------------------------------------------------------------------------------------------------------------------------------------
-        if character_p == 0: # if the charactor is in spot one ask a the fist qurstion 
-            player_answer = trtl.textinput("Question 1", "What is " + str(number_one) + " + " + str(number_two))
-            if player_answer == str(number_one + number_two): # when the answer is correct move on and move the charactors position up 
+
+number_one = rand.choice(number_list1)
+number_two = rand.choice(number_list2)
+
+def question_one():
+    for c in range(1):
+        global character_p
+        player_answer = trtl.textinput("Question 1", "What is " + str(number_one) + " + " + str(number_two))
+        if player_answer == str(number_one + number_two): # when the answer is correct move on and move the charactors position up 
+            update_score()
+            player_right.clear()
+            player_right.write("Good Job! " + player_name + " Pick a Hop scotch spot to move forward!", align="center", font=("Arial", 24, "bold"))
+            character_p += 1
+            player_right.hideturtle()
+        else: 
+            player_right.clear()   
+            player_right.write("Try Again! " + player_name, align="center", font=("Arial", 24, "bold"))
+
+def question_two_pick():
+   player_answer = trtl.textinput("Moving on, ", "Would you like to move on to minus or plus equation? (m or p)" ) # ask the player if they want to do a plus or minus equation  
+   for c in range(1):
+       global character_p
+       if player_answer == "m":
+        character.goto(-100, -225)
+        character.stamp()
+        player_answer = trtl.textinput("Question 2", "What is " + str(number_one) + " - " + str(number_two))
+        if player_answer == "p":
+            character.goto(100, -225)#why is this not working 
+            character.stamp()
+            player_answer = trtl.textinput("Question 2", "What is " + str(number_one) + " + " + str(number_two))
+            if player_answer == str(number_one - number_two):
+             update_score()
+             character_p += 1
+             player_right.write("Good Job! " + player_name + "Move one Hop Scotch up", align="center", font=("Arial", 24, "bold"))
+            elif player_answer == str(number_one + number_two):
                 update_score()
-                player_right.showturtle()
-                player_right.write("Good Job! " + player_name + " Pick a Hop scotch spot to move forward!", align="center", font=("Arial", 24, "bold"))
-                player_right.hideturtle()
-                player_answer = trtl.textinput("Moving on, ", "Would you like to move on to minus or plus equation? (m or p)" ) # ask the player if they want to do a plus or minus equation 
-            else:        
-                player_right.write("Try Again! " + player_name, align="center", font=("Arial", 24, "bold"))
-                player_right.hideturtle()
-                player_answer = trtl.textinput("Question 1", "What is " + str(number_one) + " + " + str(number_two))
-                player_answer = trtl.textinput("Moving on, ", "Would you like to move on to minus or plus equation? (m or p)" )
-#Start of question two------------------------------------------------------------------------------------------------------------------------------------------
-                if player_answer == "m": # if they answer minus move the charactor to that spot 
-                        character.goto(-100, -225)
-                        character.stamp()
-                        player_answer = trtl.textinput("Question 2", "What is " + str(number_one) + " - " + str(number_two))
-                        if player_answer == str(number_one - number_two): # if the answer is right move forward 
-                            update_score()
-                            player_right.clear()
-                            player_right.write("Good Job! " + player_name + " Pick a Hop scotch spot to move forward!", align="center", font=("Arial", 24, "bold"))
-                            player_right.hideturtle()
-                        else:
-                                player_right.write("Try Again! " + player_name, align="center", font=("Arial", 24, "bold"))
-                                player_right.hideturtle()
-                                
-                else:
-                    character.goto(100, -225)
-                    character.stamp()
-                    player_answer = trtl.textinput("Question 2", "What is " + str(number_one) + " + " + str(number_two))
-                    if player_answer == str(number_one + number_two):
-                        update_score()
-                        player_right.clear()  
-                        player_right.write("Good Job! " + player_name + " Pick a Hop scotch spot to move forward!", align="center", font=("Arial", 24, "bold"))  
-                        character_p == 3
-                        print("done3")
-                    else:
-                        player_right.clear()
-                        player_right.write("Try Again! " + player_name, align="center", font=("Arial", 24, "bold")) 
-                   
-#start of question 3---------------------------------------------------------------------------------------------------------------------------------------------------------
-        
+                character_p += 1
+                player_right.write("Good Job! " + player_name + "Move one Hop Scotch up", align="center", font=("Arial", 24, "bold"))
+            else: 
+              player_right.clear()   
+              player_right.write("Try Again! " + player_name, align="center", font=("Arial", 24, "bold"))
 
+def question_two():
+    for c in range(1):
+        global character_p
+        player_answer = trtl.textinput("Question 2", "What is " + str(number_one) + " + " + str(number_two))
+        if player_answer == str(number_one + number_two):
+            update_score()
+            character_p += 1
+            player_right.write("Good Job! " + player_name + " Move one Hop scotch up!", align="center", font=("Arial", 24, "bold"))
+            character.goto(0, -25)
+            character.stamp()
+        else:  
+            player_right.clear()   
+            player_right.write("Try Again! " + player_name, align="center", font=("Arial", 24, "bold"))
 
+def question_three():
+    for c in range(1):
+        global character_p
+        player_answer = trtl.textinput("Question 3", "What is " + str(number_one) + "* " + str(number_two))
+        if player_answer == str(number_one * number_two):
+            update_score
+            character_p += 1
+            player_right.write("Good Job! " + player_name + " Move one Hop scotch up!", align="center", font=("Arial", 24, "bold"))
+        else:
+            player_right.clear()
+            player_right.write("Try Again! " + player_name, align="center", font=("Arial", 24, "bold"))
 
+question_one()
+question_two_pick()
+question_two()
+question_three()
 
+       
+ 
 
-
-
-
-
-
-#Restart/try again 
 
 wn.listen()
 wn.mainloop()
