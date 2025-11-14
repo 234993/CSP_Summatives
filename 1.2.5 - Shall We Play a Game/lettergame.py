@@ -2,7 +2,7 @@ import turtle as trtl
 import random as rand
 import leaderboard_letter
 def setup():
-    global score_writer, square, plus, divide, times, minus, player_right
+    global score_writer, square, plus, divide, times, minus, player_right, number_one_e, number_two_e
     global player_answer, number_list1, number_list2, number_list1_e, number_list2_e
     global animal_random, animal, player_name, character, wn, player, number_one, number_two, score
     wn = trtl.Turtle()
@@ -189,7 +189,7 @@ def question_two_pick():
         if player_answer2 == str(number_one - number_two):
             update_score()
             player_right.clear()
-            player_right.write("Good Job! " + player_name + "Move one Hop Scotch up", align="center", font=("Arial", 24, "bold"))
+            player_right.write("Good Job! " + player_name + " Move one Hop Scotch up", align="center", font=("Arial", 24, "bold"))
             player_right.hideturtle()
             character.goto(0, -25)
             character.stamp()
@@ -220,7 +220,7 @@ def question_two_pick():
 def question_three():
         global number_one, number_two 
         random_pick()
-        player_answer = trtl.textinput("Question 3", "What is " + str(number_one) + "* " + str(number_two))
+        player_answer = trtl.textinput("Question 3", "What is " + str(number_one) + " * " + str(number_two))
         if player_answer == str(number_one * number_two):
             update_score()
             player_right.clear()
@@ -246,13 +246,14 @@ def question_four_pick():
         if player_answer2 == str(number_one_e // number_two_e):
             update_score()
             player_right.clear()
-            player_right.write("Good Job! " + player_name + "Move one Hop Scotch up", align="center", font=("Arial", 24, "bold"))
+            player_right.write("Good Job! " + player_name + " Move one Hop Scotch up", align="center", font=("Arial", 24, "bold"))
             player_right.hideturtle()
             character.goto(0, 375)
             character.stamp()
         else:
             player_right.clear()
             player_right.write("Try Again! " + player_name, align="center", font=("Arial", 24, "bold"))
+            lost_restart()
             player_right.hideturtle()
             
     else:
@@ -262,7 +263,7 @@ def question_four_pick():
         if player_answer == str(number_one - number_two):
             update_score()
             player_right.clear()
-            player_right.write("Good Job! " + player_name + "Move one Hop Scotch up", align="center", font=("Arial", 24, "bold"))
+            player_right.write("Good Job! " + player_name + " Move one Hop Scotch up", align="center", font=("Arial", 24, "bold"))
             player_right.hideturtle()
             character.goto(0, 375)
             character.stamp()
@@ -291,13 +292,13 @@ def question_five():
 def random_prize():
      if score == 5:
           player_right.clear()
-          player_right.write("Great Job! Here is your prize!" + player_name, align="center", font=("Arial", 24, "bold"))
+          player_right.write("Great Job! Here is your prize! " + player_name, align="center", font=("Arial", 24, "bold"))
           animal.showturtle()
           animal.shape(animal_random)
 
 def lost_restart():
     global player_answer
-    player_answer = trtl.textinput("Lost","You lost would you like to try again! " + player + "y or n")
+    player_answer = trtl.textinput("Lost ","You lost would you like to try again! " + player_name + " y or n ")
     if player_answer == "y":
         wn.clear()
         setup()
