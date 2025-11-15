@@ -1,9 +1,12 @@
+#imports--------------------------------------------------------------------------------------------------------
 import turtle as trtl 
 import random as rand
+# the whole setup as a def so i can call it to restart-------------------------------------------------------------------
 def setup():
     global score_writer, square, plus, divide, times, minus, player_right, number_one_e, number_two_e
     global player_answer, number_list1, number_list2, number_list1_e, number_list2_e
     global animal_random, animal, player_name, character, wn, player, number_one, number_two, score
+#wn and trutles---------------------------------------------------------------------------------------------------------------------------
     wn = trtl.Turtle()
     wn.hideturtle()
     wn = trtl.Screen()
@@ -16,6 +19,7 @@ def setup():
     player_right = trtl.Turtle()
     score_writer = trtl.Turtle()
     animal = trtl.Turtle()
+# stepup for player, character, ect----------------------------------------------------------------------------------------------------------
     player_right.hideturtle()
     player_right.penup()
     player_right.goto(200,400)
@@ -23,16 +27,18 @@ def setup():
     character.penup()
     plus.penup()
     square.speed(0) #take out after testing 
-    #Ask player for name 
+    #Ask player for nam--------------------------------------------------------------------------------------------------------------------------------------------e 
     player_name = trtl.textinput("Name:", "Hello what is your name?")
     player = trtl.textinput("Message",  player_name +", Are you ready to escape to the zoo?")
     player = player.lower()
     #------------------------------------------------------------------------------------------------------------------------------
-    #Leaderboard 
+    #Leaderboard------------------------------------------------------------------------------------------------------
     score_writer.hideturtle() 
     score_writer.penup()
     score_writer.goto(475,475)
     score = 0
+
+    #adding in the gifs------------------------------------------------------------------------------------------------------------------------
     wn.addshape("character.gif")
     character.penup()
     character.shape("character.gif")
@@ -57,17 +63,17 @@ def setup():
     wn.addshape("dragon.gif")
     wn.addshape("phoenix.gif")
     wn.addshape("nine_tails.gif")
-
+#hiding tutrles------------------------------------------------------------------------------------------------------
     animal.hideturtle()
     animal.penup()
     animal.goto(-325, 325)
-
-    #set condtions for layout 
     square.penup()
     divide.hideturtle()
     plus.hideturtle()
     minus.hideturtle()
     times.hideturtle()
+
+#if statment for it they want to play or not-------------------------------------------------------------------------------------------------
     if player == "n":
         wn.bye()
     else:
@@ -80,6 +86,7 @@ def setup():
         times.showturtle()
         character.goto(0, -425)
         character.stamp()
+#the number list for the equations and the random animal they get when they win --------------------------------------------------------------------------------------------
     number_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     number_list2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -91,14 +98,14 @@ def setup():
 
     number_one_e = rand.choice(number_list1_e)
     number_two_e = rand.choice(number_list2_e)
-
+#the score defination for the equations------------------------------------------------------------
 def update_score():
     global score
     score += 1
     score_writer.clear()
     score_writer.write(score, font=("Arial", 24, "bold" ))
 
-# change background 
+#Were the squares go-(could i make this less repetitive)---------------------------------------------------------------
 
 def place():
     square_list_color = ("blue", "yellow", "green", "pink", "purple", "red", "orange")
@@ -128,7 +135,7 @@ def place():
     square.color(rand.choice(square_list_color))
     square.stamp()
 
-
+#help with making the squares random colors in the setup def--------------------------------------------------------------------------------
 def symbol_set_up():
   plus.goto(100, -225)
   plus.stamp()  
@@ -145,22 +152,13 @@ def symbol_set_up():
   plus.goto(0, 375)
   plus.stamp()
 
-
-
-
-
+#the radom_pick so the questions dont pick the same numbers each time----------------------------------------------------------------------------------
 def random_pick():
  global number_one, number_two
  number_one = rand.choice(number_list1)
  number_two = rand.choice(number_list2)
 
-
-
-
-
-
-
-
+#the questions definations---------------------------------------------------------------------------------------------------------------------------------
 def question_one():
         global number_one, number_two 
         random_pick()
@@ -305,7 +303,7 @@ def lost_restart():
         wn.bye()
      
 
-  
+ #call all the defs in the right order--------------were the code actual runs------------------------------------------------------------------------- 
 setup()    
 random_pick()
 question_one()
@@ -315,7 +313,6 @@ question_four_pick()
 question_five()
 random_prize()
 
-       
  
 
 
