@@ -1,6 +1,5 @@
 import turtle as trtl 
 import random as rand
-import leaderboard_letter
 def setup():
     global score_writer, square, plus, divide, times, minus, player_right, number_one_e, number_two_e
     global player_answer, number_list1, number_list2, number_list1_e, number_list2_e
