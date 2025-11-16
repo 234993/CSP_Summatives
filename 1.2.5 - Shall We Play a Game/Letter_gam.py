@@ -26,7 +26,6 @@ def setup():
     player_right.color("brown")
     character.penup()
     plus.penup()
-    square.speed(0) #take out after testing 
 #Ask player for nam--------------------------------------------------------------------------------------------------------------------------------------------e 
     player_name = trtl.textinput("Name:", "Hello what is your name?")
     player = trtl.textinput("Message",  player_name +", Are you ready to escape to the zoo?")
@@ -298,6 +297,18 @@ def random_prize():
           player_right.write("Great Job! Here is your prize! " + player_name, align="center", font=("Arial", 24, "bold"))
           animal.showturtle()
           animal.shape(animal_random)
+          player_answer = trtl.textinput("Play again? ","You finished would you like to quit?(y or n)")
+          player_right.clear()
+          if player_answer == "n":
+            setup()
+            random_pick()
+            question_one()
+            question_two_pick()
+            question_three()
+            question_four_pick()
+            question_five()
+          else: 
+              wn.bye()
 
 def lost_restart():
     global player_answer
@@ -305,6 +316,14 @@ def lost_restart():
     if player_answer == "y":
         wn.clear()
         setup()
+        random_pick()
+        question_one()
+        question_two_pick()
+        question_three()
+        question_four_pick()
+        question_five()
+        random_prize()
+
     else:
         wn.bye()
      
