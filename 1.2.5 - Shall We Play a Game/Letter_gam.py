@@ -1,24 +1,45 @@
 #imprts--------------------------------------------------------------------------------------------------------o
 import turtle as trtl 
 import random as rand
+#wn and trutles---------------------------------------------------------------------------------------------------------------------------
+wn = trtl.Turtle()
+wn.hideturtle()
+wn = trtl.Screen()
+square  = trtl.Turtle()
+plus = trtl.Turtle()
+times = trtl.Turtle()
+minus = trtl.Turtle()
+divide = trtl.Turtle()
+character = trtl.Turtle()
+player_right = trtl.Turtle()
+score_writer = trtl.Turtle()
+animal = trtl.Turtle()
+
+'''#Ask player for nam--------------------------------------------------------------------------------------------------------------------------------------------e 
+player_name = trtl.textinput("Name:", "Hello what is your name?")
+player = trtl.textinput("Message",  player_name +", Are you ready to escape to the zoo?")
+player = player.lower()'''
+
+#the number list for the equations and the random animal they get when they win --------------------------------------------------------------------------------------------
+
+number_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+number_list2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+number_list1_e = [ 10, 12, 16, 18, 20]
+number_list2_e = [2]
+
+animal_list = ("unicorn.gif", "dragon.gif", "phoenix.gif", "nine_tails.gif")
+animal_random = rand.choice(animal_list)
+
+number_one_e = rand.choice(number_list1_e)
+number_two_e = rand.choice(number_list2_e)
+
 # the whole setup as a def so i can call it to restart-------------------------------------------------------------------
 def setup():
     global score_writer, square, plus, divide, times, minus, player_right, number_one_e, number_two_e
     global player_answer, number_list1, number_list2, number_list1_e, number_list2_e
     global animal_random, animal, player_name, character, wn, player, number_one, number_two, score
-#wn and trutles---------------------------------------------------------------------------------------------------------------------------
-    wn = trtl.Turtle()
-    wn.hideturtle()
-    wn = trtl.Screen()
-    square  = trtl.Turtle()
-    plus = trtl.Turtle()
-    times = trtl.Turtle()
-    minus = trtl.Turtle()
-    divide = trtl.Turtle()
-    character = trtl.Turtle()
-    player_right = trtl.Turtle()
-    score_writer = trtl.Turtle()
-    animal = trtl.Turtle()
+
 # stepup for player, character, ect----------------------------------------------------------------------------------------------------------
     player_right.hideturtle()
     player_right.penup()
@@ -26,10 +47,6 @@ def setup():
     player_right.color("brown")
     character.penup()
     plus.penup()
-#Ask player for nam--------------------------------------------------------------------------------------------------------------------------------------------e 
-    player_name = trtl.textinput("Name:", "Hello what is your name?")
-    player = trtl.textinput("Message",  player_name +", Are you ready to escape to the zoo?")
-    player = player.lower()
     #------------------------------------------------------------------------------------------------------------------------------
 #Leaderboard------------------------------------------------------------------------------------------------------ 
     score_writer.hideturtle() 
@@ -73,7 +90,12 @@ def setup():
     plus.hideturtle()
     minus.hideturtle()
     times.hideturtle()
-#if statment for it they want to play or not-------------------------------------------------------------------------------------------------
+  
+#Ask player for nam--------------------------------------------------------------------------------------------------------------------------------------------e 
+    player_name = trtl.textinput("Name:", "Hello what is your name?")
+    player = trtl.textinput("Message",  player_name +", Are you ready to escape to the zoo?")
+    player = player.lower()
+#if statment for it they want to play or not(Allow for user input)-------------------------------------------------------------------------------------------------
 
     if player == "n":
         wn.bye()
@@ -88,19 +110,6 @@ def setup():
         character.goto(0, -425)
         character.stamp()
 
-#the number list for the equations and the random animal they get when they win --------------------------------------------------------------------------------------------
-
-    number_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    number_list2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-    number_list1_e = [ 10, 12, 16, 18, 20]
-    number_list2_e = [2]
-
-    animal_list = ("unicorn.gif", "dragon.gif", "phoenix.gif", "nine_tails.gif")
-    animal_random = rand.choice(animal_list)
-
-    number_one_e = rand.choice(number_list1_e)
-    number_two_e = rand.choice(number_list2_e)
 
 #the score defination for the equations------------------------------------------------------------
 def update_score():
@@ -109,7 +118,7 @@ def update_score():
     score_writer.clear()
     score_writer.write(score, font=("Arial", 24, "bold" ))
 
-#Were the squares go-(could i make this less repetitive)---------------------------------------------------------------
+#Were the squares go-(could i make this less repetitive)(Use color and movement)---------------------------------------------------------------
 def place():
     square_list_color = ("blue", "yellow", "green", "pink", "purple", "red", "orange")
     square.shapesize(9)
@@ -162,7 +171,7 @@ def random_pick():
  number_one = rand.choice(number_list1)
  number_two = rand.choice(number_list2)
 
-#the questions definations---------------------------------------------------------------------------------------------------------------------------------
+#the questions definations( Include conditional behavior)+( Respond to events.)+( Create functions (to reduce duplication of code when appropriate)---------------------------------------------------------------------------------------------------------------------------------
 
 def question_one():
         global number_one, number_two 
@@ -174,7 +183,7 @@ def question_one():
             player_right.write("Good Job! " + player_name + " Pick a Hop scotch spot to move forward!", align="center", font=("Arial", 24, "bold"))
             player_right.hideturtle()
         else: 
-            player_right.clear()   
+            #player_right.clear()- causing an error  
             player_right.write("Try Again! " + player_name, align="center", font=("Arial", 24, "bold"))
             lost_restart()
             player_answer = trtl.textinput("Question 1", "What is " + str(number_one) + " + " + str(number_two))
